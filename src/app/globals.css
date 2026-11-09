@@ -1,0 +1,772 @@
+
+@import "tailwindcss";
+@import "tw-animate-css";
+
+/* =========================================
+   GLOBAL CONFIGURATION
+========================================= */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: var(--font-inter), Arial, sans-serif;
+
+  /* Luxury brand palette */
+  --color-brand-red: #8E2638;
+  --color-brand-deep: #100D0D;
+  --color-brand-royal: #38202A;
+  --color-brand-orange: #B98A45;
+  --color-brand-gold: #D6B875;
+  --color-brand-ink: #111010;
+  --color-brand-mist: #F6F3ED;
+  --color-brand-slate: #77716A;
+
+  --animate-float: float 6s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 4s ease-in-out infinite;
+  --animate-gradient: gradient-flow 8s ease infinite;
+  --animate-shine: shine 3s linear infinite;
+  --animate-fade-up: fade-up 0.7s ease-out both;
+  --animate-fade-in: fade-in 0.8s ease-out both;
+  --animate-border: border-flow 5s linear infinite;
+  --animate-marquee: marquee 30s linear infinite;
+}
+
+/* =========================================
+   SEMANTIC THEME VARIABLES
+========================================= */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+/* =========================================
+   LIGHT THEME
+========================================= */
+
+:root {
+  color-scheme: light;
+
+  --background: #F6F3ED;
+  --foreground: #191615;
+
+  --card: #FFFFFF;
+  --card-foreground: #191615;
+
+  --popover: #FFFFFF;
+  --popover-foreground: #191615;
+
+  --primary: #8E2638;
+  --primary-foreground: #FFFFFF;
+
+  --secondary: #EDE7DC;
+  --secondary-foreground: #302821;
+
+  --muted: #EEEAE3;
+  --muted-foreground: #77716A;
+
+  --accent: #D6B875;
+  --accent-foreground: #191615;
+
+  --border: #E4DED3;
+  --input: #E4DED3;
+  --ring: #B98A45;
+
+  --radius: 0.75rem;
+
+  --selection-bg: #D6B875;
+  --selection-text: #191615;
+}
+
+/* =========================================
+   DARK THEME
+========================================= */
+
+.dark {
+  color-scheme: dark;
+
+  --background: #0D0C0C;
+  --foreground: #F5F0E7;
+
+  --card: #171515;
+  --card-foreground: #F5F0E7;
+
+  --popover: #191616;
+  --popover-foreground: #F5F0E7;
+
+  --primary: #C49A58;
+  --primary-foreground: #15110C;
+
+  --secondary: #241E1B;
+  --secondary-foreground: #F5F0E7;
+
+  --muted: #211D1B;
+  --muted-foreground: #A69C90;
+
+  --accent: #B98A45;
+  --accent-foreground: #100D0D;
+
+  --border: #302821;
+  --input: #302821;
+  --ring: #D6B875;
+
+  --selection-bg: #B98A45;
+  --selection-text: #100D0D;
+}
+
+/* =========================================
+   BASE STYLES
+========================================= */
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    border-color: var(--border);
+  }
+
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100vh;
+    margin: 0;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter), Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition:
+      background-color 0.35s ease,
+      color 0.35s ease;
+  }
+
+  button,
+  input,
+  textarea,
+  select {
+    font: inherit;
+  }
+
+  button {
+    cursor: pointer;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  img,
+  video,
+  svg {
+    max-width: 100%;
+  }
+
+  img {
+    height: auto;
+  }
+
+  ::selection {
+    background: var(--selection-bg);
+    color: var(--selection-text);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 4px;
+  }
+}
+
+/* =========================================
+   GLOBAL BLUR REMOVAL
+   Removes the unwanted hazy appearance
+   throughout the entire website.
+========================================= */
+
+*,
+*::before,
+*::after {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+}
+
+[class*="backdrop-blur"],
+[class*="blur-"],
+.blur,
+.backdrop-blur {
+  filter: none !important;
+  -webkit-filter: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Remove shadows and fading overlays from
+   common site header and navigation areas. */
+
+header,
+nav,
+.site-header,
+.navbar,
+.navigation,
+[data-site-header] {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+/* Prevent pseudo-elements from creating
+   the dark-to-light haze beneath navigation. */
+
+header::before,
+header::after,
+nav::before,
+nav::after,
+.site-header::before,
+.site-header::after,
+.navbar::before,
+.navbar::after,
+[data-site-header]::before,
+[data-site-header]::after {
+  -webkit-backdrop-filter: none !important;
+  backdrop-filter: none !important;
+  filter: none !important;
+  box-shadow: none !important;
+}
+
+/* =========================================
+   SCROLLBAR
+========================================= */
+
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #B98A45 var(--background);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    180deg,
+    #D6B875,
+    #8E2638
+  );
+  border-radius: 20px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D6B875;
+}
+
+/* =========================================
+   BACKGROUND GRID
+========================================= */
+
+.bg-grid {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(185, 138, 69, 0.09) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(185, 138, 69, 0.09) 1px,
+      transparent 1px
+    );
+  background-size: 50px 50px;
+}
+
+.bg-grid-small {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(185, 138, 69, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(185, 138, 69, 0.07) 1px,
+      transparent 1px
+    );
+  background-size: 25px 25px;
+}
+
+.dark .bg-grid,
+.dark .bg-grid-small {
+  background-image:
+    linear-gradient(
+      to right,
+      rgba(214, 184, 117, 0.07) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      to bottom,
+      rgba(214, 184, 117, 0.07) 1px,
+      transparent 1px
+    );
+}
+
+/* =========================================
+   GLASS EFFECTS
+   Solid backgrounds, no backdrop blur.
+========================================= */
+
+.glass {
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(185, 138, 69, 0.2);
+  box-shadow: 0 8px 30px rgba(35, 25, 15, 0.06);
+}
+
+.dark .glass {
+  background: #171515;
+  border: 1px solid rgba(214, 184, 117, 0.16);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.glass-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: 0 12px 35px rgba(30, 20, 10, 0.06);
+  transition:
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    transform 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: rgba(185, 138, 69, 0.5);
+  box-shadow: 0 16px 40px rgba(185, 138, 69, 0.12);
+  transform: translateY(-4px);
+}
+
+/* =========================================
+   LUXURY GRADIENT TEXT
+========================================= */
+
+.text-gradient {
+  background: linear-gradient(
+    110deg,
+    #8E2638 0%,
+    #B98A45 45%,
+    #D6B875 75%,
+    #8E2638 100%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: gradient-flow 7s ease infinite;
+}
+
+.dark .text-gradient {
+  background-image: linear-gradient(
+    110deg,
+    #D6B875 0%,
+    #F4E4BD 35%,
+    #B98A45 70%,
+    #D6B875 100%
+  );
+}
+
+/* =========================================
+   COLORFUL ANIMATED BACKGROUNDS
+========================================= */
+
+.animated-gradient {
+  background: linear-gradient(
+    -45deg,
+    #100D0D,
+    #38202A,
+    #8E2638,
+    #B98A45,
+    #100D0D
+  );
+  background-size: 400% 400%;
+  animation: gradient-flow 12s ease infinite;
+}
+
+.animated-border {
+  position: relative;
+  isolation: isolate;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(var(--card), var(--card)) padding-box,
+    linear-gradient(
+      120deg,
+      #8E2638,
+      #B98A45,
+      #D6B875,
+      #8E2638
+    ) border-box;
+  background-size: 100% 100%, 300% 300%;
+  animation: border-flow 6s linear infinite;
+}
+
+.animated-line {
+  position: relative;
+  overflow: hidden;
+}
+
+.animated-line::after {
+  content: "";
+  position: absolute;
+  left: -100%;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    #B98A45,
+    #D6B875,
+    transparent
+  );
+  animation: line-sweep 4s ease-in-out infinite;
+}
+
+/* =========================================
+   GLOW EFFECTS
+   Decorative glow without blur filters.
+========================================= */
+
+.gold-glow {
+  box-shadow:
+    0 0 0 1px rgba(214, 184, 117, 0.15),
+    0 0 20px rgba(185, 138, 69, 0.14);
+}
+
+.red-glow {
+  box-shadow:
+    0 0 0 1px rgba(142, 38, 56, 0.15),
+    0 0 24px rgba(142, 38, 56, 0.15);
+}
+
+.hover-gold-glow {
+  transition: box-shadow 0.35s ease;
+}
+
+.hover-gold-glow:hover {
+  box-shadow:
+    0 0 0 1px rgba(214, 184, 117, 0.3),
+    0 0 25px rgba(185, 138, 69, 0.2);
+}
+
+/* =========================================
+   FLOATING DECORATIVE ELEMENTS
+========================================= */
+
+.blob {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  opacity: 0.12;
+  background: linear-gradient(
+    135deg,
+    #8E2638,
+    #D6B875
+  );
+  animation: float 9s ease-in-out infinite;
+}
+
+.blob-gold {
+  background: #B98A45;
+}
+
+.blob-red {
+  background: #8E2638;
+}
+
+.blob-delay {
+  animation-delay: -3s;
+}
+
+/* =========================================
+   SHEEN / SHINE EFFECT
+========================================= */
+
+.sheen {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.sheen::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -80%;
+  width: 45%;
+  height: 200%;
+  pointer-events: none;
+  transform: rotate(25deg);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.22),
+    transparent
+  );
+  animation: shine 5s ease-in-out infinite;
+}
+
+/* =========================================
+   BUTTON INTERACTIONS
+========================================= */
+
+.btn-luxury {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  color: #17110B;
+  background: linear-gradient(
+    120deg,
+    #B98A45,
+    #E5CB91,
+    #B98A45
+  );
+  background-size: 200% auto;
+  border: 1px solid rgba(214, 184, 117, 0.5);
+  transition:
+    background-position 0.5s ease,
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.btn-luxury:hover {
+  background-position: right center;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(185, 138, 69, 0.22);
+}
+
+.btn-outline-luxury {
+  color: var(--foreground);
+  border: 1px solid rgba(185, 138, 69, 0.55);
+  background: transparent;
+  transition:
+    color 0.3s ease,
+    background-color 0.3s ease,
+    border-color 0.3s ease;
+}
+
+.btn-outline-luxury:hover {
+  color: #17110B;
+  background: #D6B875;
+  border-color: #D6B875;
+}
+
+/* =========================================
+   MARQUEE
+========================================= */
+
+.marquee {
+  display: flex;
+  width: max-content;
+  animation: marquee 30s linear infinite;
+}
+
+.marquee:hover {
+  animation-play-state: paused;
+}
+
+/* =========================================
+   PAGE TRANSITIONS
+========================================= */
+
+.page-enter {
+  animation: fade-up 0.7s ease-out both;
+}
+
+.fade-in {
+  animation: fade-in 0.8s ease-out both;
+}
+
+.stagger-item {
+  animation: fade-up 0.65s ease-out both;
+}
+
+.stagger-item:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.stagger-item:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.stagger-item:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.stagger-item:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+/* =========================================
+   KEYFRAME ANIMATIONS
+========================================= */
+
+@keyframes float {
+  0%, 100% {
+    transform: translate3d(0, 0, 0);
+  }
+
+  50% {
+    transform: translate3d(0, -18px, 0);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.7;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes gradient-flow {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes shine {
+  0% {
+    left: -80%;
+  }
+
+  45%, 100% {
+    left: 140%;
+  }
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes border-flow {
+  0% {
+    background-position: 0 0, 0% 50%;
+  }
+
+  50% {
+    background-position: 0 0, 100% 50%;
+  }
+
+  100% {
+    background-position: 0 0, 0% 50%;
+  }
+}
+
+@keyframes line-sweep {
+  0% {
+    left: -100%;
+  }
+
+  60%, 100% {
+    left: 100%;
+  }
+}
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* =========================================
+   RESPONSIVE IMPROVEMENTS
+========================================= */
+
+@media (max-width: 768px) {
+  html {
+    scroll-padding-top: 80px;
+  }
+
+  .bg-grid {
+    background-size: 35px 35px;
+  }
+
+  .glass-card:hover {
+    transform: none;
+  }
+
+  .gold-glow,
+  .red-glow {
+    box-shadow: none;
+  }
+}
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* build-marker-1711 */

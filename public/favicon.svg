@@ -1,0 +1,163 @@
+
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="1008" height="1024"
+     viewBox="0 0 1008 1024">
+
+  <defs>
+    <linearGradient id="blue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2589F0"/>
+      <stop offset="100%" stop-color="#1742A6"/>
+    </linearGradient>
+
+    <linearGradient id="cyan" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1750B8"/>
+      <stop offset="100%" stop-color="#39C5E5"/>
+    </linearGradient>
+
+    <linearGradient id="red" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF7622"/>
+      <stop offset="100%" stop-color="#E20B28"/>
+    </linearGradient>
+
+    <linearGradient id="red2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#A90035"/>
+      <stop offset="100%" stop-color="#E7192C"/>
+    </linearGradient>
+
+    <linearGradient id="teal" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#45D3D0"/>
+      <stop offset="100%" stop-color="#008C91"/>
+    </linearGradient>
+
+    <linearGradient id="yellow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFD000"/>
+      <stop offset="100%" stop-color="#FF7900"/>
+    </linearGradient>
+
+    <linearGradient id="nameGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#182D79"/>
+      <stop offset="55%" stop-color="#328BC5"/>
+      <stop offset="100%" stop-color="#41C4DD"/>
+    </linearGradient>
+
+    <linearGradient id="surnameGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#94153C"/>
+      <stop offset="48%" stop-color="#9B452D"/>
+      <stop offset="100%" stop-color="#E5B52B"/>
+    </linearGradient>
+  </defs>
+
+  <!-- TOP LEFT BLUE SYMBOL -->
+  <path d="
+    M114 110
+    Q114 78 148 78
+    H407
+    Q455 78 455 124
+    V213
+    Q455 248 420 248
+    H304
+    L263 207
+    V367
+    Q263 399 231 399
+    H114 Z"
+    fill="url(#blue)"/>
+
+  <path d="
+    M148 78
+    H407
+    Q455 78 455 124
+    V213
+    Q455 248 420 248
+    H304 Z"
+    fill="url(#cyan)" opacity="0.75"/>
+
+  <!-- TOP RIGHT RED SYMBOL -->
+  <path d="
+    M509 101
+    Q509 71 536 71
+    H619
+    Q647 71 647 100
+    V263
+    H800
+    Q842 263 842 301
+    V385
+    Q842 399 826 399
+    H509 Z"
+    fill="url(#red)"/>
+
+  <path d="
+    M647 263
+    H800
+    Q842 263 842 301
+    V385
+    Q842 399 826 399
+    H509 Z"
+    fill="url(#red2)"/>
+
+  <!-- RED CIRCLE -->
+  <circle cx="763" cy="146" r="77" fill="url(#red)"/>
+
+  <!-- NAME -->
+  <text x="110" y="541"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="143"
+        font-weight="900"
+        letter-spacing="3"
+        fill="url(#nameGradient)">NEWTON</text>
+
+  <!-- SURNAME -->
+  <text x="110" y="643"
+        font-family="Arial, Helvetica, sans-serif"
+        font-size="108"
+        font-weight="900"
+        letter-spacing="10"
+        fill="url(#surnameGradient)">ADHIKARI</text>
+
+  <!-- BOTTOM LEFT TEAL SYMBOL -->
+  <path d="
+    M108 679
+    H452
+    V1013
+    Q452 1014 437 1014
+    H347
+    Q315 1014 315 981
+    V807
+    H144
+    Q108 807 108 773 Z"
+    fill="url(#teal)"/>
+
+  <path d="
+    M315 807
+    L452 679
+    V1013
+    Q452 1014 437 1014
+    H347
+    Q315 1014 315 981 Z"
+    fill="#008D91" opacity="0.65"/>
+
+  <!-- TEAL CIRCLE -->
+  <circle cx="191" cy="929" r="79" fill="url(#teal)"/>
+
+  <!-- BOTTOM RIGHT YELLOW SYMBOL -->
+  <path d="
+    M686 678
+    H838
+    V946
+    Q838 984 802 984
+    H532
+    Q494 984 494 947
+    V874
+    Q494 843 525 843
+    H686 Z"
+    fill="url(#yellow)"/>
+
+  <path d="
+    M686 843
+    L838 984
+    H532
+    Q494 984 494 947
+    V874
+    Q494 843 525 843 Z"
+    fill="#F5B900" opacity="0.55"/>
+
+</svg>
